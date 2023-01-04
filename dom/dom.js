@@ -18,7 +18,25 @@
 // }
 
 
-var li = document.getElementsByTagName('li');
-for (let i=0; i<li.length;i++) {
-        li[i].style.backgroundColor= '#f4f4f4';
+// var li = document.getElementsByTagName('li');
+// for (let i=0; i<li.length;i++) {
+//         li[i].style.backgroundColor= '#f4f4f4';
+// }
+
+var secondItem = document.querySelector('.list-group-item:nth-child(2)');
+secondItem.style.backgroundColor= 'green';
+
+var thirdItem = document.querySelector('.list-group-item:nth-child(3)');
+thirdItem.style.visibility= 'hidden';
+
+
+var secondItem2 = document.querySelectorAll('.list-group-item')[1];
+secondItem2.style.color= 'green';
+
+var odd = document.querySelectorAll('li:nth-child(odd)');
+
+for (let i=0; i<odd.length;i++) {
+    odd[i].style.backgroundColor= 'green';
 }
+
+
