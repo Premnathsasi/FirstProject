@@ -6,8 +6,6 @@ var msg = document.querySelector('.msg');
 var userList = document.querySelector('#users');
 // form submit event
 myForm.addEventListener('submit', onSubmit);
-// delete event
-// userList.addEventListener('click',removeUser);
 
 
 function onSubmit(event) {
@@ -16,55 +14,48 @@ function onSubmit(event) {
         msg.innerHTML= "Please enter all fields";
         setTimeout(() => msg.remove(),3000);
     } else {
-        var Name =event.target.name.value;
-        var Email = event.target.email.value;
-        var PhoneNo = event.target.phNo.value;
-
-        let obj = {
-          Name,
-          Email,
-          PhoneNo
-        }
-
-        localStorage.setItem(obj.Email, JSON.stringify(obj));
-
-
         var li = document.createElement('li');
-        li.className= 'list-group-item';
-        li.textContent = obj.Name + ' - ' +obj.Email+ ' - ' + obj.PhoneNo+ ' - ';
-        // li.appendChild(document.createTextNode(`${nameInput.value} - ${mailInput.value} - ${phoneInput.value}`));
+        //Add del button
         var delbtn = document.createElement('button');
         delbtn.className= 'btn btn-danger float-end btn-sm delete';
         delbtn.appendChild(document.createTextNode('Delete'));
-        delbtn.onclick = () => {
-            localStorage.removeItem(obj.Email);
-            userList.removeChild(li);
-        }
 
+        //Add Edit button
+        var editBtn = document.createElement('button')
+        editBtn.className= 'btn btn-primary float-end btn-sm me-2 edit';
+        editBtn.appendChild(document.createTextNode('Edit'));
+
+
+        li.className= 'list-group-item';
+        li.appendChild(document.createTextNode(`${nameInput.value} - ${mailInput.value} - ${phoneInput.value}`));
         li.appendChild(delbtn);
+        li.appendChild(editBtn);
         userList.appendChild(li);
 
-        
-        // let obj_serialised = JSON.stringify(object1);
-        // localStorage.setItem(mailInput.value,obj_serialised);
-        // let obj_deserialised = JSON.parse(localStorage.getItem(mailInput.value));
-        // localStorage.getItem(obj_deserialised);
+        let object1 = {
+            name: nameInput.value,
+            Email: mailInput.value,
+            Phone: phoneInput.value
+        }
+        localStorage.setItem(object1.Email,JSON.stringify(object1));
 
-        // localStorage.setItem(mailInput.value,(`${'name'}:${nameInput.value}, ${'mail'}:${mailInput.value}, ${'Phone'}:${phoneInput.value}`));
-   
+        delbtn.onclick= () => {
+            localStorage.removeItem(object1.Email);
+            userList.removeChild(li)
+        }
         nameInput.value='';
         mailInput.value='';
         phoneInput.value='';
 
+        editBtn.onclick= (name,email,phone) => {
+
+            document.getElementById('name').value=name.value;
+            document.getElementById('email').value=email;
+            document.getElementById('phNo').value=phone;
+            localStorage.removeItem(object1.Email);
+            userList.removeChild(li);
+        }
+
     }
 
 }
-// function removeUser(e) {
-//     if (e.target.classList.contains('delete')) {
-//         var li = e.target.parentElement;
-//         localStorage.removeItem(Email);
-//         userList.removeChild(li);
-
-//     }
-
-// }
