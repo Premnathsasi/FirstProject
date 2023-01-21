@@ -49,9 +49,9 @@ function onSubmit(event) {
 
         editBtn.onclick= (name,email,phone) => {
 
-            document.getElementById('name').value=name.value;
-            document.getElementById('email').value=email;
-            document.getElementById('phNo').value=phone;
+            nameInput.value= object1.name;
+            mailInput.value = object1.Email;
+            phoneInput.value=object1.Phone;
             localStorage.removeItem(object1.Email);
             userList.removeChild(li);
         }
