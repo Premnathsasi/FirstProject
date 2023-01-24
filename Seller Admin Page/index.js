@@ -28,6 +28,21 @@ function onSubmit(event){
     delBtn.appendChild(document.createTextNode('Delete Product'));
     li.appendChild(delBtn);
     foodItem.appendChild(li);
+    
+    let object1= {
+        Price:sellPrice.value,
+        productName: pName.value,
+        productID: productId.value
+    }
+    localStorage.setItem(object1.productID,JSON.stringify(object1));
+    delBtn.onclick= () => {
+        localStorage.removeItem(object1.productID);
+        foodItem.removeChild(li)
+    }
+    
+    productId.value='';
+    sellPrice.value='';
+    pName.value='';
         } else if (category.value==='Electronics'){
                 var li = document.createElement('li');
                 li.className='list-group-item';
@@ -39,6 +54,23 @@ function onSubmit(event){
                 delBtn.appendChild(document.createTextNode('Delete Product'));
                 li.appendChild(delBtn);
                 electronicItem.appendChild(li);
+            
+    let object3= {
+        Price:sellPrice.value,
+        productName: pName.value,
+        productID: productId.value
+    }
+    localStorage.setItem(object3.productID,JSON.stringify(object3))
+                
+    
+        delBtn.onclick= () => {
+        localStorage.removeItem(object3.productID);
+        electronicItem.removeChild(li)
+    }
+    
+    productId.value='';
+    sellPrice.value='';
+    pName.value='';
               }
          else {
             var li = document.createElement('li');
@@ -51,22 +83,25 @@ function onSubmit(event){
                 delBtn.appendChild(document.createTextNode('Delete Product'));
                 li.appendChild(delBtn);
                 skinItem.appendChild(li);
-                
-        }
-
-    let object1= {
+        
+    let object2= {
         Price:sellPrice.value,
         productName: pName.value,
         productID: productId.value
     }
-    localStorage.setItem(object1.productID,JSON.stringify(object1));
-    delBtn.onclick= () => {
-        localStorage.removeItem(object1.productID);
-        foodItem.removeChild(li)
-    }
+    localStorage.setItem(object2.productID,JSON.stringify(object2))
+        delBtn.onclick= () => {
+            localStorage.removeItem(object2.productID);
+            skinItem.removeChild(li)
+
+                
+        }
+        
     productId.value='';
     sellPrice.value='';
     pName.value='';
 
+
     }
+}
 }
