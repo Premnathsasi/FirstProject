@@ -47,7 +47,7 @@ function onSubmit(event) {
         mailInput.value='';
         phoneInput.value='';
 
-        editBtn.onclick= (name,email,phone) => {
+        editBtn.onclick= () => {
 
             nameInput.value= object1.name;
             mailInput.value = object1.Email;
