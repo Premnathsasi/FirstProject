@@ -42,15 +42,15 @@
 // console.log("Person5: shows Ticket")
 
 
-
-
 const  posts = [
-    { title: 'post One',body: 'This is post one',createdAt: Date.now()},
+    { title: 'Post One',body: 'This is post one',createdAt: Date.now()},
     {title: 'Post Two',body: 'This is post two',createdAt: Date.now()}
 ];
 
 let intervalId =0;
 function getposts() {
+    return new Promise((res,rej) => {
+        
     clearInterval(intervalId)
     intervalId= setInterval (() => {
         let output = '';
@@ -59,17 +59,74 @@ function getposts() {
         })
         document.body.innerHTML = output;
     },1000)
+    })
 }
 
 
 
- async function create4thPost(post) {
-    const createPost = new Promise((resolve,reject) => setTimeout(() => resolve(posts.push({...post,createdAt: Date.now()})),3000))
-    const deletePost = new Promise((resolve,reject) => setTimeout(() => resolve(posts.pop()),1000) )
-    let createpost = await createPost;
-    let delPost = await deletePost;
-    return createpost;
+function createpost(post) {
+    return new Promise((res,rej) => {
+        
+    setTimeout(() => {
+       res(posts.push({...post, createdAt: Date.now()}));
+    },2000)
+    })
+}
+    
+
+
+function create4thPost(post) {
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            posts.push({...post,createdAt: Date.now()});
+            const error = false;
+    
+            if(!error) {
+                resolve();
+            } else {
+                reject('Error: Something went wrong')
+            }
+        },4000)
+        })
 
 }
-create4thPost({title: 'post Three',body: 'This is post three',createdAt: Date.now()},getposts()).catch(() => console.log('Error'))
+
+
+
+function deletePost() {
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+        if(posts.length>0) {
+            resolve(posts.pop());
+        } else {
+            reject("Inside catch block Array is empty now")
+        }
+            
+        },1000)
+    })
+}
+
+
+async function fun() {
+   try { const getpost = getposts();
+    const createPost = createpost({ title: 'Post three', body: 'This is post four' });
+    const fourPost = await create4thPost({title:'Post Four',body:'This is post four'});
+    const delPost = await deletePost();
+    const delPost1 = await deletePost();
+    const delPost2 = await deletePost();
+    const delPost3 = await deletePost();
+    const delPost4 = await deletePost().catch((err) => console.log(err));
+   } catch{
+    (err) => console.log('Error: Something went wrong')}
+
+
+}
+
+fun();
+
+
+
+
+
+
 
