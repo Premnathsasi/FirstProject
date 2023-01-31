@@ -79,12 +79,17 @@ function showOnscreen(object1) {
     mailInput.value='';
     phoneInput.value='';
 
-    editBtn.onclick= () => {
+    editBtn.addEventListener('click', () => {
 
         nameInput.value= object1.name;
-        mailInput.value = object1.Email;
-        phoneInput.value=object1.Phone;
-        localStorage.removeItem(object1.Email);
-        userList.removeChild(li);
-    }
+    mailInput.value = object1.Email;
+    phoneInput.value=object1.Phone;
+    // localStorage.removeItem(object1.Email);
+    userList.removeChild(li);
+    axios.delete(`https://crudcrud.com/api/f584a1e35bdd44058167e23488b4d4f5/appointmentData/${object1._id}`)
+    .then(res => console.log(res))
+    .catch(err=> console.log(err))
+    });
+    
 }
+
