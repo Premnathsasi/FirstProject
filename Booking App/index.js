@@ -35,6 +35,19 @@ function onSubmit(event) {
 
 }
 
+window.addEventListener("DOMContentLoaded",() => {
+    axios.get("https://crudcrud.com/api/f584a1e35bdd44058167e23488b4d4f5/appointmentData")
+    .then((res)=> {
+        for (var i=0;i<res.data.length;i++){
+            showOnscreen(res.data[i])
+        }
+    })
+    .catch((err) => {
+        document.body.innerHTML= document.body.innerHTML+'<h4>Error:something went wrong</h4>'
+            console.log(err)})
+        
+})
+
 function showOnscreen(object1) {
     
     var li = document.createElement('li');
