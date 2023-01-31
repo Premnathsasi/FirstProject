@@ -1,3 +1,4 @@
+
 var myForm = document.getElementById('my-form');
 var nameInput = document.querySelector('#name');
 var mailInput = document.querySelector('#email');
@@ -14,20 +15,14 @@ function onSubmit(event) {
         msg.innerHTML= "Please enter all fields";
         setTimeout(() => msg.remove(),3000);
     } else {
-        
+
         let object1 = {
             name: nameInput.value,
             Email: mailInput.value,
             Phone: phoneInput.value
         }
-
-        // localStorage.setItem(object1.Email,JSON.stringify(object1));
-        axios.post("https://crudcrud.com/api/f584a1e35bdd44058167e23488b4d4f5/appointmentData",object1)
-        .then(res => showOnscreen(res.data))
-        .catch((err) => {
-        document.body.innerHTML= document.body.innerHTML+'<h4>Error:something went wrong</h4>'
-            console.log(err)})
-        // showOnscreen(object1);
+        localStorage.setItem(object1.Email,JSON.stringify(object1));
+        showOnScreen(object1)
 
         
 
@@ -35,21 +30,7 @@ function onSubmit(event) {
 
 }
 
-window.addEventListener("DOMContentLoaded",() => {
-    axios.get("https://crudcrud.com/api/f584a1e35bdd44058167e23488b4d4f5/appointmentData")
-    .then((res)=> {
-        for (var i=0;i<res.data.length;i++){
-            showOnscreen(res.data[i])
-        }
-        console.log(res.data)
-    })
-    .catch((err) => {
-        document.body.innerHTML= document.body.innerHTML+'<h4>Error:something went wrong</h4>'
-            console.log(err)})
-        
-})
-
-function showOnscreen(object1) {
+function showOnScreen(object1) {
     
     var li = document.createElement('li');
     //Add del button
@@ -69,17 +50,15 @@ function showOnscreen(object1) {
     li.appendChild(editBtn);
     userList.appendChild(li);
 
-     delbtn.onclick= () => {
-        axios.delete(`https://crudcrud.com/api/f584a1e35bdd44058167e23488b4d4f5/appointmentData/${object1._id}`)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+    delbtn.onclick= () => {
+        localStorage.removeItem(object1.Email);
         userList.removeChild(li)
     }
     nameInput.value='';
     mailInput.value='';
     phoneInput.value='';
 
-    editBtn.onclick= () => {
+    editBtn.onclick= (name,email,phone) => {
 
         nameInput.value= object1.name;
         mailInput.value = object1.Email;
@@ -88,3 +67,16 @@ function showOnscreen(object1) {
         userList.removeChild(li);
     }
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+    const localStorageObj = localStorage;
+    const keys = Object.keys(localStorageObj)
+
+    for (var i=0;i<keys.length;i++) {
+        const key = keys[i];
+        const userDetail = localStorageObj[key];
+        const userDetailobj= JSON.parse(userDetail);
+        showOnScreen(userDetailobj)
+        
+    }
+})  
