@@ -22,7 +22,7 @@ function onSubmit(event) {
         }
 
         // localStorage.setItem(object1.Email,JSON.stringify(object1));
-        axios.post("https://crudcrud.com/api/f584a1e35bdd44058167e23488b4d4f5/appointmentData",object1)
+        axios.post("https://crudcrud.com/api/cbbacfce50f3466f8c2e92c0af1af8d8/appointmentData",object1)
         .then(res => showOnscreen(res.data))
         .catch((err) => {
         document.body.innerHTML= document.body.innerHTML+'<h4>Error:something went wrong</h4>'
@@ -36,7 +36,7 @@ function onSubmit(event) {
 }
 
 window.addEventListener("DOMContentLoaded",() => {
-    axios.get("https://crudcrud.com/api/f584a1e35bdd44058167e23488b4d4f5/appointmentData")
+    axios.get("https://crudcrud.com/api/cbbacfce50f3466f8c2e92c0af1af8d8/appointmentData")
     .then((res)=> {
         for (var i=0;i<res.data.length;i++){
             showOnscreen(res.data[i])
@@ -70,7 +70,7 @@ function showOnscreen(object1) {
     userList.appendChild(li);
 
      delbtn.onclick= () => {
-        axios.delete(`https://crudcrud.com/api/f584a1e35bdd44058167e23488b4d4f5/appointmentData/${object1._id}`)
+        axios.delete(`https://crudcrud.com/api/cbbacfce50f3466f8c2e92c0af1af8d8/appointmentData/${object1._id}`)
         .then(res => console.log(res))
         .catch(err => console.log(err))
         userList.removeChild(li)
@@ -86,7 +86,7 @@ function showOnscreen(object1) {
     phoneInput.value=object1.Phone;
     // localStorage.removeItem(object1.Email);
     userList.removeChild(li);
-    axios.delete(`https://crudcrud.com/api/f584a1e35bdd44058167e23488b4d4f5/appointmentData/${object1._id}`)
+    axios.delete(`https://crudcrud.com/api/cbbacfce50f3466f8c2e92c0af1af8d8/appointmentData/${object1._id}`)
     .then(res => console.log(res))
     .catch(err=> console.log(err))
     });
