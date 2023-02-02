@@ -76,7 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
     })
     .catch((err) => {
         msg.innerHTML= "<h5 class='text-white'>Error: Something went wrong..</h5>"
-        setTimeout(() => msg.remove(),3000)
+        setTimeout(() => msg.remove(),4000)
         
          console.log(err)
     })
