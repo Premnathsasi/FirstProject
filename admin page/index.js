@@ -39,7 +39,6 @@ async function onSubmit(event) {
     li.appendChild(delBtn)
 
     delBtn.addEventListener('click',async ()=> {
-
         let res= await axios.delete(`https://crudcrud.com/api/eec3131d7e6446b984332244e5700711/ProductDetails/${obj._id}`)
     })
 
@@ -52,15 +51,12 @@ async function onSubmit(event) {
         cg2.appendChild(li);
         delBtn.onclick= () => {
             cg2.removeChild(li);
-        }
-        
-
+    }
     } else {
         cg3.appendChild(li);
         delBtn.onclick= () => {
             cg3.removeChild(li);
         }
-        
     }
     myForm.reset()
     
@@ -68,7 +64,6 @@ async function onSubmit(event) {
         msg.innerHTML= "<h5 class='text-white'>Error: Something went wrong..</h5>"
         setTimeout(() => msg.remove(),4000)
     }
-    
 }
 
 window.addEventListener('DOMContentLoaded',async () => {
@@ -80,7 +75,5 @@ window.addEventListener('DOMContentLoaded',async () => {
     } catch(err) {
         msg.innerHTML= "<h5 class='text-white'>Error: Something went wrong..</h5>"
         console.log(err)
-
-    }
-  
+    }  
 });
