@@ -10,37 +10,37 @@ var msg = document.querySelector('.msg');
 
 myForm.addEventListener('submit',onSubmit);
 
-function onSubmit(event) {
+async function onSubmit(event) {
+    try {  
     event.preventDefault();
-
     var obj ={
         Product_Price:price.value,
         Product_name:productName.value,
         Category:chooseCategory.value
     }
-    axios.post("https://crudcrud.com/api/9f7f4e8434574d9b8d9e8177039e4276/ProductDetails",obj)
-    .then(res => showOnscreen(res.data))
-    .catch((err) => {
-        msg.innerHTML= "<h5>Error: Something went wrong..</h5>"
-        setTimeout(() => msg.remove(),3000)
-        console.log(err)
-    })
-}
+    const response= await axios.post("https://crudcrud.com/api/eec3131d7e6446b984332244e5700711/ProductDetails",obj)
+    showOnscreen(response.data)
+        
+    } catch(err) {
+        msg.innerHTML= "<h5 class='text-white'>Error: Something went wrong..</h5>"
+        setTimeout(() => msg.remove(),4000)
+    }
+    }
 
-function showOnscreen(obj) {
-    var li = document.createElement('li');
+ async function showOnscreen(obj) {
+    try {
+        var li = document.createElement('li');
     // create delete button
     var  delBtn = document.createElement('button');
-    delBtn.className= 'btn btn-danger float-end btn-sm delete';
+    delBtn.className= 'btn btn-danger float-end btn-sm delete rounded-pill';
     delBtn.appendChild(document.createTextNode('Delete Product'));
     li.className='list-group-item';
-    li.appendChild(document.createTextNode(`Product_Price: ${obj.Product_Price} - Name: ${obj.Product_name} - ${obj.Category}`))
+    li.appendChild(document.createTextNode(`Product Price: ${obj.Product_Price} - Product Name: ${obj.Product_name} - ${obj.Category}`))
     li.appendChild(delBtn)
 
-    delBtn.addEventListener('click',()=> {
-        axios.delete(`https://crudcrud.com/api/9f7f4e8434574d9b8d9e8177039e4276/ProductDetails/${obj._id}`)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+    delBtn.addEventListener('click',async ()=> {
+
+        let res= await axios.delete(`https://crudcrud.com/api/eec3131d7e6446b984332244e5700711/ProductDetails/${obj._id}`)
     })
 
     if (obj.Category==='Electronic') {
@@ -62,23 +62,25 @@ function showOnscreen(obj) {
         }
         
     }
-    price.value="";
-    productName.value="";
+    myForm.reset()
+    
+    } catch(err) {
+        msg.innerHTML= "<h5 class='text-white'>Error: Something went wrong..</h5>"
+        setTimeout(() => msg.remove(),4000)
+    }
+    
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    axios.get("https://crudcrud.com/api/9f7f4e8434574d9b8d9e8177039e4276/ProductDetails")
-    .then((res) => {
+window.addEventListener('DOMContentLoaded',async () => {
+    try {
+        let res = await axios.get("https://crudcrud.com/api/eec3131d7e6446b984332244e5700711/ProductDetails")
         for (let i=0;i<res.data.length;i++) {
             showOnscreen(res.data[i])
         }
-        console.log(res.data)
-    })
-    .catch((err) => {
+    } catch(err) {
         msg.innerHTML= "<h5 class='text-white'>Error: Something went wrong..</h5>"
-        setTimeout(() => msg.remove(),4000)
-        
-         console.log(err)
-    })
+        console.log(err)
+
+    }
   
 });
