@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <style>
     hr {
-        border-style: groove;
+        border-style:groove;
         border-color: azure;
         border-width: 2px;
     }
@@ -29,7 +29,7 @@
                 <input type="text" id="pName" name='pName' class="form-control mb-3">
             </div>
             <div class="d-block p-2">
-                <label for="cg" class="form-label text-white fw-semibold pe-2">Choose a Category:</label>
+                <label for="cg" class="form-label text-white fw-bold">Choose a Category:</label>
                 <select name="cg" class="form-select mb-3" id="cg">
                     <option value="Electronic">Electronic</option>
                     <option value="Food">Food</option>
@@ -37,24 +37,24 @@
                 </select>
             </div>
             <div>
-                <div  class=""><input type="submit" class="btn btn-success rounded-pill btn-lg " value="Add Product"></div>            
+                <div  class=""><input type="submit" class="btn btn-success rounded-pill btn-lg fw-semibold " value="Add Product"></div>            
             </div>
             <div class="msg"></div>
         </form>
         <hr>
-        <div class="container col-md-6">
-        <h2 class="mt-5 mb-4 text-white">Products</h2>
+        <div class="container col-md-7 mb-3 pb-2">
+        <h2 class="mt-5 mb-4 text-white fw-bold">Products</h2>
         <hr>
-        <ul class="list-group text-white" id="cg1">
-            <h5>Electronic Items</h5>
+        <ul class="list-group text-white list-group-flush" id="cg1">
+            <h5 class="fw-bold">Electronic Items</h5>
         </ul>
         <br>
-        <ul class="list-group text-white" id="cg2">
-            <h5>Food Items</h5>
+        <ul class="list-group text-white list-group-flush" id="cg2">
+            <h5 class="fw-bold">Food Items</h5>
         </ul>
         <br>
-        <ul class="list-group text-white" id="cg3">
-            <h5>Skincare Items</Table></h5>
+        <ul class="list-group text-white list-group-flush" id="cg3">
+            <h5 class="fw-bold">Skincare Items</Table></h5>
         </ul>
     </div>
         

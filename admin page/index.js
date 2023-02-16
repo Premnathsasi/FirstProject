@@ -18,7 +18,7 @@ async function onSubmit(event) {
         Product_name:productName.value,
         Category:chooseCategory.value
     }
-    const response= await axios.post("https://crudcrud.com/api/eec3131d7e6446b984332244e5700711/ProductDetails",obj)
+    const response= await axios.post("https://crudcrud.com/api/e022d72d35a34cfcbae44fcdd1777d92/ProductDetails",obj)
     showOnscreen(response.data)
         
     } catch(err) {
@@ -34,28 +34,29 @@ async function onSubmit(event) {
     var  delBtn = document.createElement('button');
     delBtn.className= 'btn btn-danger float-end btn-sm delete rounded-pill';
     delBtn.appendChild(document.createTextNode('Delete Product'));
-    li.className='list-group-item';
-    li.appendChild(document.createTextNode(`Product Price: ${obj.Product_Price} - Product Name: ${obj.Product_name} - ${obj.Category}`))
+    li.className='list-group-item text-white fw-semibold bg-dark bg-opacity-50';
+    li.appendChild(document.createTextNode(`Product Price: ${obj.Product_Price} -  Product Name: ${obj.Product_name} -  ${obj.Category}`))
     li.appendChild(delBtn)
 
-    delBtn.addEventListener('click',async ()=> {
-        let res= await axios.delete(`https://crudcrud.com/api/eec3131d7e6446b984332244e5700711/ProductDetails/${obj._id}`)
+    delBtn.addEventListener('click',async()=> {
+        const res= axios.delete(`https://crudcrud.com/api/e022d72d35a34cfcbae44fcdd1777d92/ProductDetails/${obj._id}`)
+        res()
     })
 
     if (obj.Category==='Electronic') {
-        cg1.appendChild(li)
+        electronic.appendChild(li)
         delBtn.onclick= () => {
-            cg1.removeChild(li);
+            electronic.removeChild(li);
         }
     }else if (obj.Category==='Food') {
-        cg2.appendChild(li);
+        food.appendChild(li);
         delBtn.onclick= () => {
-            cg2.removeChild(li);
+            food.removeChild(li);
     }
     } else {
-        cg3.appendChild(li);
+        skinCare.appendChild(li);
         delBtn.onclick= () => {
-            cg3.removeChild(li);
+            skinCare.removeChild(li);
         }
     }
     myForm.reset()
@@ -68,7 +69,7 @@ async function onSubmit(event) {
 
 window.addEventListener('DOMContentLoaded',async () => {
     try {
-        let res = await axios.get("https://crudcrud.com/api/eec3131d7e6446b984332244e5700711/ProductDetails")
+        let res = await axios.get("https://crudcrud.com/api/e022d72d35a34cfcbae44fcdd1777d92/ProductDetails")
         for (let i=0;i<res.data.length;i++) {
             showOnscreen(res.data[i])
         }
