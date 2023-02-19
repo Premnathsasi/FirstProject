@@ -1,10 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import './ExpenseForm.css';
 
 const ExpenseForm = () => {
+    const [enteredTitle, setEnteredTitle] = useState('');
+    const [enteredAmount,setEnteredAmount] = useState('');
+    const [enteredDate,setEnteredDate] = useState('');
+
     const titleHandler = (event) => {
-        console.log(event.target.value)
+        setEnteredTitle(event.target.value);
     }
+const amountHandler =(event) => {
+    setEnteredAmount(event.target.value)
+};
+
+const dateHandler= (event) => {
+    setEnteredDate(event.target.value);
+}
+
     return (
         <form>
             <div className="new-expense__controls">
@@ -14,11 +26,11 @@ const ExpenseForm = () => {
                 </div>
                 <div className="new-expense__control">
                     <label>Amount</label>
-                    <input type='number' min="0.0" step="0.50"></input>
+                    <input type='number' min="0.0" step="0.50" onChange={amountHandler}></input>
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type='date' min="2020-01-01" max="2024-12-31"></input>
+                    <input type='date' min="2020-01-01" max="2024-12-31" onChange={dateHandler}></input>
                 </div>
                 <div className="new-expense__actions">
                     <button type="submit">Add Expense</button>
