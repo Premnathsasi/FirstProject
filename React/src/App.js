@@ -36,22 +36,23 @@ const App = () => {
     },
   ];
 
-  const exp =[];
-  expenses.forEach(post => exp.push(
-    <ExpenseItem 
-        title={post.title}
-        amount={post.amount}
-        date={post.date}
-        location={post.location}
-        ></ExpenseItem>
-  ))
+ 
 
 
     return (
     
       <div>
         <h2>Let's get started!</h2>
-        <Card className='expenses'>{exp}</Card>
+        <Card className='expenses'>{
+           expenses.map(post => 
+             <ExpenseItem 
+                 title={post.title}
+                 amount={post.amount}
+                 date={post.date}
+                 location={post.location}
+                 ></ExpenseItem>
+           )
+        }</Card>
         
         
       </div>
