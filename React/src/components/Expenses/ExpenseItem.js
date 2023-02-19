@@ -16,7 +16,6 @@ const ExpenseItem = (props) => {
     <Card className="expense-item">
       <ExpenseDate date={props.date} />
       <ExpenseDetails
-        location={props.location}
         title={props.title}
         amount={amount}
       />
