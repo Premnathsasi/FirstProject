@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount,setEnteredAmount] = useState('');
     const [enteredDate,setEnteredDate] = useState('');
@@ -9,13 +9,13 @@ const ExpenseForm = () => {
     const titleHandler = (event) => {
         setEnteredTitle(event.target.value);
     }
-const amountHandler =(event) => {
-    setEnteredAmount(event.target.value)
-};
+    const amountHandler =(event) => {
+        setEnteredAmount(event.target.value)
+    };
 
-const dateHandler= (event) => {
-    setEnteredDate(event.target.value);
-}
+    const dateHandler= (event) => {
+        setEnteredDate(event.target.value);
+    }
 
 const submitted =(event) =>{
     event.preventDefault();
@@ -24,8 +24,11 @@ const submitted =(event) =>{
         amont:enteredAmount,
         date:new Date(enteredDate)
     };
-    console.log(newExpenseData);
 
+    props.expenseData(newExpenseData);
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
 
 };
     return (
@@ -33,15 +36,15 @@ const submitted =(event) =>{
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
-                    <input type='text' onChange={titleHandler}></input>
+                    <input type='text' onChange={titleHandler} value={enteredTitle}></input>
                 </div>
                 <div className="new-expense__control">
                     <label>Amount</label>
-                    <input type='number' min="0.0" step="0.50" onChange={amountHandler}></input>
+                    <input type='number' min="0.0" step="0.50" onChange={amountHandler} value={enteredAmount}></input>
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type='date' min="2020-01-01" max="2024-12-31" onChange={dateHandler}></input>
+                    <input type='date' min="2020-01-01" max="2024-12-31" onChange={dateHandler} value={enteredDate}></input>
                 </div>
                 <div className="new-expense__actions">
                     <button type="submit">Add Expense</button>
