@@ -11,8 +11,6 @@
   
   .new-expense button {
     position: relative;
-    top: 25%;
-    display: inline-block;
     font: inherit;
     cursor: pointer;
     padding: 1rem  2rem;

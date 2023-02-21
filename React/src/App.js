@@ -27,6 +27,16 @@ const dummy_Expense = [
     amount: 450,
     date: new Date(2021, 5, 12),
   },
+  {
+    id: "e5",
+    title: "Wooden Sofa",
+    amount: 452.3,
+    date: new Date(2022, 3, 14),
+  },
+  { id: "e6",
+   title: "New Fridge",
+    amount: 799.49,
+     date: new Date(2022, 6, 12) }
 ];
 
 const App = () => {

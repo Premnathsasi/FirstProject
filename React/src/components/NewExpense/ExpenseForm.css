@@ -24,3 +24,13 @@
   .new-expense__actions {
     text-align: right;
   }
+
+  .cBtn {
+    display: flex;
+    left: 120%;
+  }
+  .addBtn {
+    display: flex;
+    top: 50%;
+    left: 40%
+  }
