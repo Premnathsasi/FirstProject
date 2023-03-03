@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import Header from "./component/Header";
-import MealsSummary from "./component/meals/MealsSummary";
+import Meals from "./component/meals/Meals";
 
 function App() {
   return (
     <Fragment>
       <Header />
-    <MealsSummary />
+      <Meals/>
     </Fragment>
   );
 }
