@@ -1,8 +1,8 @@
 .form {
-    position: relative;
-    display: flex;
-    left: 40rem;
-    bottom: 3rem;
+  position: absolute;
+  display: flex;
+  left: 40rem;
+  bottom: 3rem;
 }
 .form label {
   font-weight: bold;
@@ -17,7 +17,7 @@
 }
 
 .form button {
-    margin-left:1.5rem;
+  margin-left: 1.5rem;
   font: inherit;
   background-color: #031083;
   border: 1px solid #031083;
