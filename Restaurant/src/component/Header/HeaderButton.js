@@ -1,25 +1,29 @@
-import React, { useContext } from "react";
-import CartContext from "../../store/CartContext";
+import {useContext} from 'react';
+import CartContext from '../../store/CartContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import classes from "./HeaderButton.module.css";
+import classes from './HeaderButton.module.css';
 
-const HeaderButton = (props) => {
-  const cartCtx = useContext(CartContext);
-  let quantity = 0;
-   cartCtx.items.forEach((item) => {
-    quantity = quantity + Number(item.quantity);
-  });
+const HeaderCartButton = (props) => {
+
+    const cartCtx = useContext(CartContext);
+    const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
+      return curNumber + item.amount;
+    }, 0);
+
 
   return (
     <button className={classes.button} onClick={props.onClick}>
       <span className={classes.icon}>
-        <FontAwesomeIcon icon={faCartShopping} />
+      <FontAwesomeIcon icon={faCartShopping} />
       </span>
       <span>Your Cart</span>
-      <span className={classes.badge}>{quantity}</span>
+      <span className={classes.badge}>{numberOfCartItems}</span>
     </button>
   );
 };
 
-export default HeaderButton;
+export default HeaderCartButton;
+
+
+

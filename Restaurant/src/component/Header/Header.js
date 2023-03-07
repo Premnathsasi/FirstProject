@@ -1,19 +1,21 @@
-import React from 'react';
+import { Fragment } from 'react';
+
 import HeaderButton from './HeaderButton';
 import mealsImage from './meals.jpg';
 import classes from './Header.module.css';
 
 const Header = (props) => {
-    return <React.Fragment>
-        <header className={classes.header}>
-            <h1>Meatatarian</h1>
-            <HeaderButton onClick={props.onOpenCart} />
-        </header>
-        <div className={classes['main-image']}>
-    <img src={mealsImage} alt='Meals Images' />
-        </div>
-    </React.Fragment>
+  return (
+    <Fragment>
+      <header className={classes.header}>
+        <h1>ReactMeals</h1>
+        <HeaderButton onClick={props.onShowCart} />
+      </header>
+      <div className={classes['main-image']}>
+        <img src={mealsImage} alt='A table full of delicious food!' />
+      </div>
+    </Fragment>
+  );
 };
-
 
 export default Header;
